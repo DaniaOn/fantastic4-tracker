@@ -33,6 +33,23 @@ const addManager = () => {
     return manager;
     });
 };
+// getting employees
+const addEmployee = () => {
+    connection.query(`SELECT first_name, last_name, id FROM employee`, (err, res) =>{
+        if (err) throw err;
+        employee = [];
+        for (let i = 0 ; i < res.length; i++){
+            const firstName = res[i].first_name
+            const lastName= res[i].last_name;
+            var nwEmployee = {
+                name: firstName.concat("",lastName),
+                value: id
+            }
+            employee.push(nwEmployee);
+    }
+    return employee;
+    });
+};
 
 
 
