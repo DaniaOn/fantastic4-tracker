@@ -97,9 +97,7 @@ const init = () =>{
         } else if (answer.startMenu === 'View All Departments') {
             viewAllDepartments();
         } else if (answer.startMenu === 'View All Roles') {
-            viewAllRoles();
-        } else if (answer.startMenu === 'View Employees by Department') {
-            viewAllByDept();
+            viewAllRoles()
         } else if (answer.startMenu === 'Add Department') {
             addDepartment();
         } else if (answer.startMenu === 'Add Role') {
@@ -140,4 +138,20 @@ function viewAllRoles() {
         console.table(res);
     });
     Run();
+}
+// function to enter a new department
+function addDepartment(){
+    inquirer.prompt({
+        name: "department_name",
+        type: "input",
+        message: "Please enter name of the department to be added"
+    },
+    ).then(function(answer) {
+        let query = "INSERT INTO department (department_name) VALUES (?)";
+        connection.query(query, [answer.department_name], function(err, res) {
+            if (err) throw err;
+            console.table(res);
+        })
+        Run();
+    })
 }
