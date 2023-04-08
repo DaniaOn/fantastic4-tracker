@@ -33,7 +33,7 @@ const addManager = () => {
     return manager;
     });
 };
-// getting employee
+// getting employees
 const addEmployee = () => {
     connection.query(`SELECT first_name, last_name, id FROM employee`, (err, res) =>{
         if (err) throw err;
