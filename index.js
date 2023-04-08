@@ -186,3 +186,64 @@ function addRole(){
         Run();
     })
 }
+//Calling the addEmployee function to add an employee
+function addEmployee() {
+    inquirer.prompt(
+        [
+            {
+                name: "first_name",
+                type: "input",
+                message: "Please enter the employee's first name"
+            },
+            {
+                name: "last_name",
+                type: "input",
+                message: "Please enter the employee's last name"
+            }, 
+            {
+                name: "roles_id",
+                type: "input",
+                message: "Enter the employee's role id"
+            }, 
+            {
+                name: "manager_id",
+                type: "input",
+                message: "Enter your manager's id",
+            }, 
+        ]
+    )
+        .then(function(answer) {
+            let query = "INSERT INTO role (first_name, last_name, roles_id, manager_id) VALUES (?,?,?,?)";
+            connection.query(query, [answer.first_name, answer.last_name, answer.roles_i, answer.manager_id ], function(err, res) {
+                if (err) throw err;
+                console.table(res);
+            })
+            Run();
+        })
+}
+
+//adding employee role
+function updateRole() {
+    inquirer.prompt([
+        {
+             name: "employeeId",
+             type: "input",
+             message: "Please enter the employee's ID"
+        },     
+        {
+            name: "roleId",
+            type: "input",
+            message: "Please enter the employee's new role"
+       }
+    ])
+    .then(function(answer) {
+        let query = "UPDATE employee SET roles_id = ? WHERE id =?";
+        connection.query(query, [parseInt(answer.employeeID), parseInt(answer.roleID)], function(err, res) {
+            if (err) throw err;
+            console.table(res);
+        })
+        Run();
+    }) 
+}
+
+Run();
