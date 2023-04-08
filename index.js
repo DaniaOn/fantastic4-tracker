@@ -122,3 +122,22 @@ function viewAllEmployees() {
     });
     Run();
 }
+//Viewing all departments and it's info 
+function viewAllDepartments() {
+    var query = "SELECT * FROM department";
+    connection.query(query, function(err, res) {
+        if (err) throw err;
+        console.table(res);
+    });
+    Run();
+}
+//Viewing all roles and it's info
+
+function viewAllRoles() {
+    var query = "SELECT * FROM role";
+    connection.query(query, function(err, res) {
+        if (err) throw err;
+        console.table(res);
+    });
+    Run();
+}
