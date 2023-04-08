@@ -104,6 +104,7 @@ const init = () =>{
             addRole()
         } else if (answer.startMenu === 'Add Employee') {
             addEmployee();
+        } else if (answer.startMenu === 'Update Employee Role') {
             updateEmployeeRole();
         } else if (answer.startMenu === 'Exit') {
             connection.end();
