@@ -34,6 +34,23 @@ const addManager = () => {
     });
 };
 // getting employees
+const addRole = () => {
+    connection.query(`SELECT title, role_id FROM role`, (err, res) =>{
+        if (err) throw err;
+        employee = [];
+        for (let i = 0 ; i < res.length; i++){
+            const id = res[i].role_id
+            const title= res[i].title;
+            var nwRole = {
+                name: title,
+                value: id
+            }
+            role.push(nwRole);
+    }
+    return role;
+    });
+};
+// getting employees
 const addEmployee = () => {
     connection.query(`SELECT first_name, last_name, id FROM employee`, (err, res) =>{
         if (err) throw err;
@@ -51,6 +68,13 @@ const addEmployee = () => {
     });
 };
 
+const roleReview = `SELECT id, employee.first_name, employee.last_name, title, salary, department.role, manager.manager FROM employee JOIN role ON employee.role_id = role.role_id JOIN department ON role.department_id = department.department_id LEFT JOIN manager on employee.manager_id = manager.manager_id`;
+
+const init = () =>{
+    addEmployee();
+    addRole()
+    addManager
+}
 
 
 
