@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "asciiart-logo": "^0.2.7",
+    "console.table": "^0.10.0",
+    "dotenv": "^16.0.3",
+    "inquirer": "^9.1.5",
+    "mysql": "^2.18.1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+

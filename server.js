@@ -1,7 +1,6 @@
 // Dependencies for configuration
 const inquirer = require('inquirer');
 const mysql = require('mysql');
-const logo = require('asciiart-logo');
 const cTable = require('console.table');
 
 var manager = [];
@@ -12,10 +11,19 @@ var employee = [];
 // configuration for connection SQL
 const connection = mysql.createConnection({
     host: 'localhost',
-    port: 3001,
+    port: 3306,
     user: 'root',
-    password: '',
+    password: 'Dani1996',
     database: 'employees_db'
+});
+
+// Initiate MySQL Connection
+connection.connect(function(err) {
+    if (err) {
+        console.error("connection error: " + err.stack);
+        return;
+    }
+    console.log("connected as id " + connection.threadId);
 });
 
 const addManager = () => {
@@ -68,8 +76,6 @@ const addEmployee = () => {
     return employee;
     });
 };
-
-const roleReview = `SELECT id, employee.first_name, employee.last_name, title, salary, department.role, manager.manager FROM employee JOIN role ON employee.role_id = role.role_id JOIN department ON role.department_id = department.department_id LEFT JOIN manager on employee.manager_id = manager.manager_id`;
 
 const init = () =>{
     addEmployee();
