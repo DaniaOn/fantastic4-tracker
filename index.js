@@ -72,9 +72,46 @@ const roleReview = `SELECT id, employee.first_name, employee.last_name, title, s
 
 const init = () =>{
     addEmployee();
-    addRole()
-    addManager
-}
+    addRole();
+    addManager();
+  inquirer .prompt({
+    name:"init",
+    type: "options",
+    message: "What would you like to do?",
+    choices:[
+    'View All Employees',
+    'View All Departments',
+    'View All Roles',
+    'View All Employees by Department',
+    'Add a Department',
+    'Add a Role',
+    'Add an Employee',
+    'Update an Employee Role',
+  ],
+})  
+// Call function for selected action
+    .then((answer) => {
+        if (answer.startMenu === 'View All Employees') {
+            viewAllEmployees();
+        } else if (answer.startMenu === 'View All Departments') {
+            viewAllDepartments();
+        } else if (answer.startMenu === 'View All Roles') {
+            viewAllRoles();
+        } else if (answer.startMenu === 'View Employees by Department') {
+            viewAllByDept();
+        } else if (answer.startMenu === 'Add Department') {
+            addDepartment();
+        } else if (answer.startMenu === 'Add Role') {
+            addRole()
+        } else if (answer.startMenu === 'Add Employee') {
+            addEmployee();
+            updateEmployeeRole();
+        } else if (answer.startMenu === 'Exit') {
+            connection.end();
+        }
+    });
+
+};
 
 
 
