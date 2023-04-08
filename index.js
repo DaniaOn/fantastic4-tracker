@@ -223,7 +223,7 @@ function addEmployee() {
 }
 
 //adding employee role
-function updateRole() {
+function updateEmployeeRole() {
     inquirer.prompt([
         {
              name: "employeeId",
@@ -246,4 +246,4 @@ function updateRole() {
     }) 
 }
 
-Run();
+init();
